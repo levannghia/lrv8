@@ -36,7 +36,7 @@ class MyController extends Controller
     {
         $xacThuc = array('name'=>$request->name,'password'=>$request->password);
         if(Auth::attempt($xacThuc)){
-            return redirect()->route('home')->with('success','Logged in successfully');
+            return redirect()->route('post.index')->with('success','Logged in successfully');
         }
         else{
             return redirect()->back()->with('danger','Login failed');

@@ -13,13 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+
 Route::get('/', 'MyController@index')->name('index');
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
 Route::post('/register', 'MyController@postSignUp');
 Route::post('/login', 'MyController@postSignIn');
 Route::get('/logout', 'MyController@Logout');
+
+Route::resource('post', PostController::class)->middleware('checklogin');
