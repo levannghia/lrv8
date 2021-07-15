@@ -24,8 +24,8 @@ class AuthController extends Controller
         $validated = $request->validated();
         if(Auth::attempt($validated)){
             $user = Auth::user();
-            //$token = $user->createToken('lrv8')->accessToken;
-            return response()->json(["user"=>$user, "msg"=>"Dang nhap thanh cong"],200);
+            $token = $user->createToken('lrv8')->accessToken;
+            return response()->json(["user"=>$user, "token"=>$token, "msg"=>"Dang nhap thanh cong"],200);
         }
         else
         {
@@ -33,9 +33,9 @@ class AuthController extends Controller
         }
     }
 
-    // public function getMe()
-    // {
-    //     $user = Auth::user();
-    //     return response()->json(["user"=>$user],200);
-    // }
+    public function getMe()
+    {
+        $user = Auth::user();
+        return response()->json(["user"=>$user],200);
+    }
 }
